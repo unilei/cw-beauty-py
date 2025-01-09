@@ -1,0 +1,29 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变定义 -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+    <!-- 光标闪烁动画 -->
+    <style>
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .cursor {
+        animation: blink 1.5s infinite;
+      }
+    </style>
+  </defs>
+  
+  <!-- 圆形背景 -->
+  <circle cx="60" cy="60" r="56" fill="url(#gradient)" opacity="0.1"/>
+  
+  <!-- 代码括号 -->
+  <path d="M40 35L25 60L40 85" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M80 35L95 60L80 85" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- 闪烁的光标 -->
+  <rect class="cursor" x="55" y="40" width="4" height="40" fill="url(#gradient)"/>
+</svg> 

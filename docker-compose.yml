@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - SECRET_KEY=${SECRET_KEY:-your_secret_key_here}
+      - FLASK_ENV=production
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=${VITE_API_BASE_URL}
+    ports:
+      - "3001:3000"  # 静态文件服务端口
+    env_file:
+      - .env
+    environment:
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL}
+      - DOCKER_ENV=true
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge 
